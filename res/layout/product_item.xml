@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+        android:background="@android:color/holo_green_light">
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:text="NAME"
+            android:textColor="@android:color/black"
+            android:id="@+id/name"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:layout_below="@+id/name"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="5dp"
+            android:textColor="@android:color/black"
+            android:id="@+id/price"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:layout_below="@+id/name"
+            android:layout_alignParentRight="true"
+            android:textColor="@android:color/black"
+            android:layout_margin="5dp"
+            android:id="@+id/amount"/>
+</RelativeLayout>
