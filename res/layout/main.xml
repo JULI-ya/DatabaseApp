@@ -6,7 +6,7 @@
 
     <ListView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:id="@+id/products"
             android:layout_above="@+id/add"/>
     <Button
@@ -20,7 +20,7 @@
 
     <TextView android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:text="Продуктов нет"
+              android:text="Таблица пустая"
               android:textSize="30dp"
               android:gravity="center"
               android:id="@+id/empty"
