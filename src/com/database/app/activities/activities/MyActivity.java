@@ -78,6 +78,7 @@ public class MyActivity extends Activity implements View.OnClickListener, Adapte
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add("Посмотреть фирмы");
+        menu.add("Поиск");
         super.onCreateOptionsMenu(menu);
         return true;
     }
@@ -112,7 +113,11 @@ public class MyActivity extends Activity implements View.OnClickListener, Adapte
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        startActivity(new Intent(MyActivity.this, FirmsActivity.class));
+        if (item.getTitle().equals("Посмотреть фирмы")) {
+            startActivity(new Intent(MyActivity.this, FirmsActivity.class));
+        }else{
+            startActivity(new Intent(MyActivity.this, SearchActivity.class));
+        }
         return true;
     }
 
@@ -149,11 +154,11 @@ public class MyActivity extends Activity implements View.OnClickListener, Adapte
         final EditText name = (EditText) view.findViewById(R.id.name);
         name.setVisibility(View.GONE);
         final EditText price = (EditText) view.findViewById(R.id.price);
-        price.setText(product.getPrice());
+        price.setText(String.valueOf(product.getPrice()));
         final EditText amount = (EditText) view.findViewById(R.id.amount);
-        amount.setText(product.getAmount());
+        amount.setText(String.valueOf(product.getAmount()));
         final EditText fId = (EditText) view.findViewById(R.id.firm_id);
-        fId.setText(product.getFirmaId());
+        fId.setText(String.valueOf(product.getFirmaId()));
         builder.setView(view);
         builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
             @Override

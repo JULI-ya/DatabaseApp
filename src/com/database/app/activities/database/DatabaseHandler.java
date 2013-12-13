@@ -214,4 +214,49 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         long x = db.update(DatabaseConstants.TABLE_FIRMS, values, DatabaseConstants.KEY_ID + "= ?", new String[]{String.valueOf(id)});
         db.close(); // Closing database connection
     }
+
+    public String searchType1(String pAmount) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT firms.name from firms INNER JOIN sclad ON firms._id = sclad.firma_id " +
+                "WHERE (sclad.amount = ?) AND (sclad.price = (SELECT MIN(sclad.price) FROM sclad WHERE sclad.amount = ?))";
+        Cursor cursor = db.rawQuery(query, new String[]{pAmount, pAmount});
+        if (cursor.moveToFirst()) {
+            return cursor.getString(0);
+        }
+        db.close();
+        return null;
+    }
+
+    public ArrayList<String> searchType2() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String> arrayList = new ArrayList<String>();
+        String query = "SELECT sclad.price, sclad.name, firms.name from sclad INNER JOIN firms ON sclad.firma_id = firms._id " +
+                "WHERE sclad.price = (SELECT MIN(price) from sclad)";
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            arrayList.add(cursor.getString(0));
+            arrayList.add(cursor.getString(1));
+            arrayList.add(cursor.getString(2));
+            return arrayList;
+        }
+        db.close();
+        return null;
+
+    }
+
+    public ArrayList<String> searchType3() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String> arrayList = new ArrayList<String>();
+        String query = "SELECT name from sclad ORDER BY name";
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                arrayList.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+            db.close();
+            return arrayList;
+
+        }
+        return null;
+    }
 }
